@@ -13500,6 +13500,67 @@ $(".table-overflow").click(function(evt) {
  }
 });
 
+$(".test-content-detail").click(function(evt) {
+ var target = $(evt.target);
+ /* -- [ dashboard-view to attributes-view navigation ] -- */
+ if (target.is(".tag-view .test-content .badge-danger")) {	 
+	$(".attributes-view .test-content tbody tr").css("display","");
+	var trNodes = $(".attributes-view .test-content tbody tr").length;
+	for(var i=1; i<=trNodes; i++){	
+		var statusval= $(".attributes-view .test-content tbody tr:nth-child("+ i +") td>div").attr("class");
+		if (statusval.includes("pass")) {
+			$(".attributes-view .test-content tbody tr:nth-child("+ i +")").css("display","none");
+		}
+	}  
+  }
+});
+
+$(".attributes-view .test-list-item").click(function(evt) {
+ var target = $(evt.target);
+ /* -- [ dashboard-view to attributes-view navigation ] -- */
+ if (target.is(".tag-view .test-detail .badge-danger")) {	 
+	$(".attributes-view .test-content tbody tr").css("display","");
+	var trNodes = $(".attributes-view .test-content tbody tr").length;
+	for(var i=1; i<=trNodes; i++){	
+		var statusval= $(".attributes-view .test-content tbody tr:nth-child("+ i +") td>div").attr("class");
+		if (statusval.includes("pass")) {
+			$(".attributes-view .test-content tbody tr:nth-child("+ i +")").css("display","none");
+		}
+	}  
+  }
+});
+
+
+$(".test-content-detail").click(function(evt) {
+ var target = $(evt.target);
+ /* -- [ dashboard-view to attributes-view navigation ] -- */
+ if (target.is(".tag-view .test-content .badge-success")) {	 
+	$(".attributes-view .test-content tbody tr").css("display","");
+	var trNodes = $(".attributes-view .test-content tbody tr").length;
+	for(var i=1; i<=trNodes; i++){	
+		var statusval= $(".attributes-view .test-content tbody tr:nth-child("+ i +") td>div").attr("class");
+		if (statusval.includes("fail")) {
+			$(".attributes-view .test-content tbody tr:nth-child("+ i +")").css("display","none");
+		}
+	}  
+  }
+});
+
+$(".attributes-view .test-list-item").click(function(evt) {
+ var target = $(evt.target);
+ /* -- [ dashboard-view to attributes-view navigation ] -- */
+ if (target.is(".tag-view .test-detail .badge-success")) {	 
+	$(".attributes-view .test-content tbody tr").css("display","");
+	var trNodes = $(".attributes-view .test-content tbody tr").length;
+	for(var i=1; i<=trNodes; i++){	
+		var statusval= $(".attributes-view .test-content tbody tr:nth-child("+ i +") td>div").attr("class");
+		if (statusval.includes("fail")) {
+			$(".attributes-view .test-content tbody tr:nth-child("+ i +")").css("display","none");
+		}
+	}  
+  }
+});
+
 /* ------------------------------------ */
 /* filters */
 /* ------------------------------------ */
@@ -13509,6 +13570,7 @@ function toggleByStatus(status) {
  if (status != "clear") {
   $(".test-item[status!='" + status + "']").addClass("d-none");
  }
+ $(".tag-view .test-item").removeClass("d-none");
  selectFirst();
 }
 
