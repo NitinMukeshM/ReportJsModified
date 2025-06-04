@@ -1,0 +1,67 @@
+.side-nav {
+    width: 180px !important;
+    transition: width 0.3s ease-in-out;
+}
+
+.layout .vcontainer {
+    margin-left: 180px !important;
+}
+
+.category-container {
+    /* Make sure card background covers full width */
+    width: 100%;
+}
+
+.category-container {
+    flex: 0 0 65%; /* ~8 columns */
+    max-width: 65%;
+}
+  
+.sysenv-container {
+    flex: 0 0 35%; /* ~4 columns */
+    max-width: 35%;
+}
+
+.category-container table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse; /* ensure no gaps */
+}
+
+.category-container table th,
+.category-container table td {
+    text-align: center;
+    vertical-align: middle;
+    word-wrap: break-word;
+    padding: 6px;
+}
+
+/* Increase name column width to about 45% */
+.category-container table th:nth-child(1),
+.category-container table td:nth-child(1) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    width: 50%;  /* Increased from 45% to 50% */
+}
+
+/* Passed % column width */
+.category-container table th:nth-child(6),
+.category-container table td:nth-child(6) {
+    width: 10%;
+    white-space: nowrap;
+}
+
+
+/* To make the card background fully fit around the table */
+.category-container .card {
+    background-color: #f8f9fa; /* or whatever your card background is */
+    padding: 10px; /* optional padding */
+    overflow-x: auto; /* enable horizontal scroll if table too wide */
+}
+
+.highlight {
+    border: 2px solid red;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }

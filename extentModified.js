@@ -13488,7 +13488,16 @@ $(".test-content").click(function(evt) {
   $("#nav-test").click();
   $(".test-item[test-id='" + id + "']").click();
  }
+
+ if (target.is("a.linked")) {
+  var id = target.attr("id");
+  $("#nav-test").click();
+  $(".test-item[test-id='" + id + "']").click();
+ }
+
 });
+
+
 
 $(".table-overflow").click(function(evt) {
  var target = $(evt.target); 
@@ -13499,6 +13508,64 @@ $(".table-overflow").click(function(evt) {
   $(".test-item[tag-id='" + id + "']").click();
  }
 });
+
+$(".col-md-4.category-container").click(function(evt) {
+  var target = $(evt.target); 
+  if (target.is(".linked > a")) {
+    var id = target.parent().attr("id");
+    $("#nav-category").click();
+    $(".test-item[tag-id='" + id + "']").click();
+  }
+});
+
+
+$(document).on("click", ".fa-fast-forward", function () {
+  console.log("Fast forward clicked"); // Confirm it logs
+
+  const failedCards = $(".card").filter(function () {
+    return $(this).find(".badge.fail-bg").length > 0;
+  });
+
+  if (failedCards.length === 0) return;
+
+  const currentScroll = $(window).scrollTop();
+  let nextFailedCard = null;
+
+  for (let i = 0; i < failedCards.length; i++) {
+    const card = $(failedCards[i]);
+    const top = card.offset().top;
+    if (top > currentScroll + 5) {
+      nextFailedCard = card;
+      break;
+    }
+  }
+
+  if (!nextFailedCard) {
+    nextFailedCard = $(failedCards[0]);
+  }
+
+  $("html, body").animate({
+    scrollTop: nextFailedCard.offset().top - 100
+  }, 500);
+
+  // Highlight (optional)
+  nextFailedCard.addClass("highlight");
+  setTimeout(() => nextFailedCard.removeClass("highlight"), 1000);
+});
+
+$(document).on('click', '.et', function () {
+  const accordion = $(this).closest('.test-content-detail').find('.accordion');
+  accordion.find('.card .card-body').slideDown();
+  accordion.find('.card .collapse').addClass('show');
+});
+
+$(document).on('click', '.ct', function () {
+  const accordion = $(this).closest('.test-content-detail').find('.accordion');
+  accordion.find('.card .card-body').slideUp();
+  accordion.find('.card .collapse').removeClass('show');
+});
+
+
 
 $(".test-content-detail").click(function(evt) {
  var target = $(evt.target);
@@ -13529,6 +13596,43 @@ $(".attributes-view .test-list-item").click(function(evt) {
 	}  
   }
 });
+
+$(".attributes-view .test-list-item").click(function(evt) {
+  var target = $(evt.target);
+
+  // If clicked element is the "fail" badge
+  if (target.is(".badge-danger")) {
+
+    // Reset all rows to be visible first
+    $(".attributes-view .test-content tbody tr").show();
+
+    // Loop through each row and hide the ones with "pass" status
+    $(".attributes-view .test-content tbody tr").each(function () {
+      if ($(this).attr("status") === "pass") {
+        $(this).hide();
+      }
+    });
+  }
+});
+
+$(".attributes-view .test-list-item").click(function(evt) {
+  var target = $(evt.target);
+
+  // If clicked element is the "fail" badge
+  if (target.is(".pass-bg")) {
+
+    // Reset all rows to be visible first
+    $(".attributes-view .test-content tbody tr").show();
+
+    // Loop through each row and hide the ones with "pass" status
+    $(".attributes-view .test-content tbody tr").each(function () {
+      if ($(this).attr("status") === "fail") {
+        $(this).hide();
+      }
+    });
+  }
+});
+
 
 
 $(".test-content-detail").click(function(evt) {
